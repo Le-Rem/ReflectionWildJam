@@ -1,0 +1,212 @@
+[gd_scene load_steps=14 format=3 uid="uid://ct2qq4rvj4t74"]
+
+[ext_resource type="Script" path="res://char.gd" id="1_m67bc"]
+[ext_resource type="Script" path="res://main.gd" id="1_tku48"]
+[ext_resource type="Script" path="res://ui.gd" id="4_1h2kx"]
+[ext_resource type="PackedScene" uid="uid://c4p3ib8kwmm5j" path="res://symbolic_wall.tscn" id="4_meq7m"]
+[ext_resource type="Texture2D" uid="uid://tks8flqdrntf" path="res://seamless1.png" id="4_nsm0h"]
+[ext_resource type="Script" path="res://enemy_mng.gd" id="4_ps1dw"]
+[ext_resource type="Texture2D" uid="uid://vlxb6i17ktmf" path="res://icon.svg" id="6_0yirq"]
+[ext_resource type="Script" path="res://copy_polygon.gd" id="6_p4e8v"]
+[ext_resource type="Script" path="res://trajectory.gd" id="8_omtqq"]
+[ext_resource type="Texture2D" uid="uid://bodwimx0wfqpn" path="res://seamless2.png" id="10_l1pw6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_im7bs"]
+radius = 35.0
+
+[sub_resource type="Gradient" id="Gradient_a0d0v"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ry1ov"]
+radius = 25.02
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_tku48")
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Polygon2D" type="Polygon2D" parent="BG"]
+z_index = -1
+texture_filter = 1
+texture_repeat = 2
+color = Color(0.82, 0.7339, 0.697, 1)
+texture = ExtResource("10_l1pw6")
+texture_scale = Vector2(0.155, 0.155)
+polygon = PackedVector2Array(-48, -54, 1270, -61, 1238, 712, -84, 719)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/StaticBody2D"]
+script = ExtResource("6_p4e8v")
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/StaticBody2D"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(2, 0)
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+texture_offset = Vector2(2.915, 0)
+texture_scale = Vector2(0.35, 0.35)
+polygon = PackedVector2Array(-36, 80, 197, -81, 752, 0, 1248, 119, 1816, 225, 3546, 109, 3071, 1601, 2054, 1635, 554, 2237, -1291, 1487, -2626, 5, -3293, 1657, -1103, 2509, 486, 3050, 3392, 3205, 4164, 2372, 4563, 1075, 4139, -628, 1519, -331, 116, -560, -473, -259, -566, 212, -434, 767, -74, 1064, 816, 1225, 1540, 1123, 1759, 791, 1292, 809, 820, 636, 629, 784, -43, 668, -191, 308)
+
+[node name="SymbolicWall" parent="Walls" instance=ExtResource("4_meq7m")]
+position = Vector2(2167, 1281)
+initial_symbol = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/SymbolicWall"]
+script = ExtResource("6_p4e8v")
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/SymbolicWall"]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("4_nsm0h")
+texture_scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-38, -113, 194, -9, 182, 192, -112, 175, -157, -42)
+
+[node name="SymbolicWall5" parent="Walls" instance=ExtResource("4_meq7m")]
+position = Vector2(1202, 294)
+initial_symbol = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/SymbolicWall5"]
+script = ExtResource("6_p4e8v")
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/SymbolicWall5"]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("4_nsm0h")
+texture_offset = Vector2(2.915, 0)
+texture_scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-38, -113, 194, -9, 182, 192, -112, 175, -157, -42)
+
+[node name="SymbolicWall2" parent="Walls" instance=ExtResource("4_meq7m")]
+position = Vector2(122, 303)
+initial_symbol = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/SymbolicWall2"]
+script = ExtResource("6_p4e8v")
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/SymbolicWall2"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(2, 0)
+texture = ExtResource("4_nsm0h")
+texture_offset = Vector2(2.915, 0)
+texture_scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-38, -113, 76, -74, 56.9396, 31.5132, 213, 298, -133, 278, -157, -42)
+
+[node name="SymbolicWall4" parent="Walls" instance=ExtResource("4_meq7m")]
+position = Vector2(2014, 449)
+initial_symbol = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/SymbolicWall4"]
+script = ExtResource("6_p4e8v")
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/SymbolicWall4"]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("4_nsm0h")
+texture_offset = Vector2(2.915, 0)
+texture_scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-38, -113, 163, -72, 426, 0, 355, 199, -1, 192, -283, 74, -222, -79)
+
+[node name="SymbolicWall3" parent="Walls" instance=ExtResource("4_meq7m")]
+position = Vector2(608, 518)
+initial_symbol = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/SymbolicWall3"]
+script = ExtResource("6_p4e8v")
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/SymbolicWall3"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(2, 0)
+texture = ExtResource("4_nsm0h")
+texture_offset = Vector2(2.915, 0)
+texture_scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(50, -153, 324, -18, 133, 157, -75, 118, -157, -42)
+
+[node name="SymbolicWall6" parent="Walls" instance=ExtResource("4_meq7m")]
+position = Vector2(2808, 1087)
+initial_symbol = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/SymbolicWall6"]
+script = ExtResource("6_p4e8v")
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/SymbolicWall6"]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("4_nsm0h")
+texture_offset = Vector2(2.915, 0)
+texture_scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(50, -153, 324, -18, 133, 157, -75, 118, -157, -42)
+
+[node name="Char" type="CharacterBody2D" parent="."]
+position = Vector2(64, 80)
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_m67bc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Char"]
+shape = SubResource("CircleShape2D_im7bs")
+
+[node name="Camera2D" type="Camera2D" parent="Char"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Char"]
+scale = Vector2(0.671875, 0.671875)
+texture = ExtResource("6_0yirq")
+
+[node name="EnemyMng" type="Node2D" parent="."]
+script = ExtResource("4_ps1dw")
+
+[node name="Marker2D" type="Marker2D" parent="EnemyMng"]
+position = Vector2(1615, 328)
+
+[node name="Marker2D5" type="Marker2D" parent="EnemyMng"]
+position = Vector2(2090, 947)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemyMng"]
+position = Vector2(3229, 434)
+
+[node name="Marker2D6" type="Marker2D" parent="EnemyMng"]
+position = Vector2(1803, 1200)
+
+[node name="Marker2D7" type="Marker2D" parent="EnemyMng"]
+position = Vector2(647, 1614)
+
+[node name="Marker2D8" type="Marker2D" parent="EnemyMng"]
+position = Vector2(-361, 1162)
+
+[node name="Marker2D9" type="Marker2D" parent="EnemyMng"]
+position = Vector2(2593, 1409)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemyMng"]
+position = Vector2(2983, 751)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemyMng"]
+position = Vector2(1185, 625)
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("4_1h2kx")
+
+[node name="Label" type="Label" parent="UI"]
+offset_left = 9.0
+offset_top = 11.0
+offset_right = 103.0
+offset_bottom = 37.0
+
+[node name="Trajectory" type="Line2D" parent="." node_paths=PackedStringArray("target")]
+gradient = SubResource("Gradient_a0d0v")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("8_omtqq")
+target = NodePath("../Char")
+
+[node name="CollisionTest" type="CharacterBody2D" parent="Trajectory"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trajectory/CollisionTest"]
+shape = SubResource("CircleShape2D_ry1ov")
+debug_color = Color(0.99, 0.4455, 0.68145, 0.156863)

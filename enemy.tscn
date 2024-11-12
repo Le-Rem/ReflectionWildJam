@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://tqmg6cy3224c"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_mltnd"]
+[ext_resource type="PackedScene" uid="uid://ca6mgsyvxi8pa" path="res://symbol_display.tscn" id="2_2wbwk"]
+[ext_resource type="Texture2D" uid="uid://vlxb6i17ktmf" path="res://icon.svg" id="2_edwqb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h5pq5"]
+radius = 25.02
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 8
+motion_mode = 1
+script = ExtResource("1_mltnd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.24, 0.404667, 0.658824)
+scale = Vector2(0.390625, 0.390625)
+texture = ExtResource("2_edwqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h5pq5")
+debug_color = Color(1, 0.5, 0.4, 0.235294)
+
+[node name="SymbolDisplay" parent="." instance=ExtResource("2_2wbwk")]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4p3ib8kwmm5j"]
+
+[ext_resource type="Script" path="res://symbolic_wall.gd" id="1_nlnyt"]
+[ext_resource type="PackedScene" uid="uid://ca6mgsyvxi8pa" path="res://symbol_display.tscn" id="2_7x2t3"]
+
+[node name="SymbolicWall" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_nlnyt")
+
+[node name="SymbolDisplay" parent="." instance=ExtResource("2_7x2t3")]
+scale = Vector2(2, 2)
